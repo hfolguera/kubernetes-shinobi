@@ -3,15 +3,15 @@ This repository deploys a Shinobi CCTV on a kubernetes cluster.
 Based on the Shinobi's original project [here](https://shinobi.video)
 
 ## Installation
-### 1. Create Shinobi's storage
+### 1. Create the Shinobi namespace
+```
+kubectl apply -f shinobi-namespace.yaml
+```
+
+### 2. Create Shinobi's storage
 In order to keep streams we will deploy a persistent storage to be used:
 ```
 kubectl apply -f shinobi-volume.yaml
-```
-
-### 2. Create the Shinobi namespace
-```
-kubectl apply -f shinobi-namespace.yaml
 ```
 
 ### 3. Create the Shinobi deployment
