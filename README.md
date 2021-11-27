@@ -25,7 +25,7 @@ kubectl apply -f shinobi-service.yaml
 ```
 
 ### 5. Access the UI as superuser
-Connect to your Shinobi instance following your network configuration as superuser.
+Connect to your Shinobi instance following your network configuration as superuser as described on documentation: https://shinobi.video/docs/start#content-set-up-superuser-access
 In my case, [https://shinobi.calfolguera.com/super](https://shinobi.calfolguera.com/super)
 
 Default user and password are: `admin@shinobi.video` and `admin`.
