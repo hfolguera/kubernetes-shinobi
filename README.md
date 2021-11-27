@@ -31,7 +31,7 @@ In my case, [https://shinobi.calfolguera.com/super](https://shinobi.calfolguera.
 Default user and password are: `admin@shinobi.video` and `admin`.
 
 ## References
-This repository has been based on the work of [npflan] (https://github.com/npflan/shinobi).
+This repository has been based on the work of [npflan](https://github.com/npflan/shinobi).
 
 ## Next steps
 * Create a default admin user as a k8s secret
