@@ -1,0 +1,36 @@
+#apiVersion: storage.k8s.io/v1
+#kind: StorageClass
+#metadata:
+#  name: shinobi-data
+#provisioner: kubernetes.io/no-provisioner
+#volumeBindingMode: WaitForFirstConsumer
+#reclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: shinobi-pv
+  namespace: shinobi
+spec:
+  storageClassName: shinobi-pv
+  capacity:
+    storage: 200Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: 192.168.1.11
+    path: "/volume2/NFS/homelab/shinobi-volume"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shinobi-pv
+  namespace: shinobi
+spec:
+  storageClassName: shinobi-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Gi

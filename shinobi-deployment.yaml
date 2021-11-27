@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shinobi
+  namespace: shinobi
+  labels:
+    app: shinobi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shinobi
+  template:
+    metadata:
+      labels:
+        app: shinobi
+    spec:
+      containers:
+      - name: shinobi
+        image: shinobicctv/shinobi
+        ports:
+        - name: http
+          containerPort: 8080
+        env:
+        - name: APP_BRANCH
+          value: master
+        - name: ADMIN_USER
+          value: "REDACTED"
+        - name: ADMIN_PASSWORD
+          value: "REDACTED"
+        volumeMounts:
+        - mountPath: /opt/shinobi/videos
+          name: shinobi-pv
+          subPath: videos
+        - mountPath: /config
+          name: shinobi-pv
+          subPath: config
+        - mountPath: /customAutoLoad
+          name: shinobi-pv
+          subPath: autoload
+        - mountPath: /var/lib/mysql
+          name: shinobi-pv
+          subPath: mysql
+      volumes:
+      - name: shinobi-pv
+        persistentVolumeClaim:
+          claimName: shinobi-pv
+#      affinity:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: kubernetes.io/hostname
+#                operator: In
+#                values:
+#                - mercy
+#      tolerations:
+#      - key: "disk"
+#        operator: "Equal"
+#        value: "spinningrust"
+#        effect: "NoSchedule"
+
